@@ -1,4 +1,4 @@
-import { indexOfWithDist } from './distsearch.js';
+import { indexOfWithDist } from './neofuzzy.js';
 
 const verylongstring = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent hendrerit id massa sagittis euismod. Curabitur interdum felis urna, quis finibus erat luctus vitae. Phasellus eu consequat ante. Vestibulum pretium semper felis, ut finibus mi euismod a. Sed pellentesque orci vel felis venenatis finibus. Aenean placerat ante eget hendrerit elementum. Nulla tincidunt eu ante ac malesuada. Praesent leo sem, dictum nec pellentesque ac, congue a dui. Curabitur auctor nunc ac odio ornare, commodo elementum turpis dignissim. Integer ac consectetur nisl. Sed diam magna, tristique quis dapibus eget, luctus nec velit. Nullam faucibus justo turpis, eu bibendum ipsum pellentesque non. \
  \

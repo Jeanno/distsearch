@@ -1,4 +1,4 @@
-import { indexOfWithDist } from './distsearch.js';
+import { indexOfWithDist } from './neofuzzy.js';
 
 function assertEqual(actual, expected, message) {
     if (actual !== expected) {
