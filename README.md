@@ -1,5 +1,5 @@
 # neofuzzy
-Search string in text with arbitrary edit distance threshold.
+Fuzzy search string in text with arbitrary edit distance threshold.
 
 ## Install
 ```
