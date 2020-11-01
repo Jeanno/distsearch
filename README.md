@@ -1,5 +1,5 @@
 # distsearch
-Searching string in text with arbitary edit distance threshold.
+Search string in text with arbitrary edit distance threshold.
 
 ## Install
 ```
