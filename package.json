@@ -1,7 +1,14 @@
 {
     "name": "distsearch",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "Jeanno <jeanno.cheung@gmail.com>",
-    "main": "index.js",
-    "type": "module"
+    "main": "lib/distsearch.js",
+    "type": "module",
+    "scripts": {
+        "test": "node src/test.js",
+        "build": "babel src -d lib"
+    },
+    "babel": {
+        "presets": ["es2015"]
+    }
 }
