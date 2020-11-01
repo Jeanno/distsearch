@@ -5,7 +5,6 @@
     "homepage": "https://github.com/Jeanno/distsearch",
     "license": "MIT",
     "main": "lib/distsearch.js",
-    "type": "module",
     "keywords": [
         "edit distance",
         "search",
