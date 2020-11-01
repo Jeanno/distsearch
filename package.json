@@ -1,5 +1,7 @@
 {
     "name": "distsearch",
-    "version": "0.0.1",
-    "main": "./index.js"
+    "version": "1.0.0",
+    "author": "Jeanno <jeanno.cheung@gmail.com>",
+    "main": "index.js",
+    "type": "module"
 }

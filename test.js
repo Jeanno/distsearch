@@ -1,7 +1,4 @@
-//import { indexOfWithDist } from './distsearch.js';
-
-var distsearch = require('./distsearch');
-var indexOfWithDist = distsearch.indexOfWithDist;
+import { indexOfWithDist } from './index.js';
 
 function assertEqual(actual, expected, message) {
     if (actual !== expected) {
