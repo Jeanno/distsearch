@@ -1,56 +1,62 @@
-function _pushMultiple(ary, value, n) {
+function _pushIncreasing(ary, value, n) {
     for (let i = 0; i < n; i++) {
-        ary.push(value);
+        ary.push(i);
     }
 }
 
-function indexOfWithDist(reference, searchvalue, distance, start = 0) {
+function _backtrack(reference, searchvalue, distTable) {
+    let rowIdx = distTable.length - 1;
+    let colIdx = searchvalue.length;
+    while (colIdx !== 0 && rowIdx !== 0) {
+        const refChar = reference.charAt(rowIdx - 1);
+        const searchChar = searchvalue.charAt(colIdx - 1);
+        const prevRow = distTable[rowIdx -  1];
+        const currentRow = distTable[rowIdx];
+        const val = currentRow[colIdx];
+        if (currentRow[colIdx - 1] + 1 === val) {
+            colIdx--;
+        } else if (prevRow[colIdx] + 1 === val) {
+            rowIdx--;
+        } else if ((prevRow[colIdx - 1] + (refChar === searchChar ? 0 : 1)) === val)  {
+            rowIdx--;
+            colIdx--;
+        } else {
+            throw "Backtracking error";
+        }
+    }
+    return rowIdx;
+}
+
+export function indexOfWithDist(reference, searchvalue, distance) {
     if (distance === 0) {
-        return reference.indexOf(searchvalue, start);
+        return reference.indexOf(searchvalue);
+    }
+    if (searchvalue.length <= distance) {
+        return 0;
     }
     
     // Fill
-    let lastRow = [ 0 ];
-    _pushMultiple(lastRow, 99999, searchvalue.length);
+    let prevRow = [];
+    _pushIncreasing(prevRow, 0, searchvalue.length + 1);
+    const rows = [ prevRow ];
     
     for (let i = 0; i < reference.length; i++) {
         const refChar = reference.charAt(i);
         const currentRow = [ 0 ];
         for (let j = 0; j < searchvalue.length; j++) {
             const searchChar = searchvalue.charAt(j);
-            if (refChar === searchChar) {
-                currentRow.push(lastRow[j]);
-            } else {
-                currentRow.push(Math.min(
-                    lastRow[j + 1] + 1, // Skip refChar
-                    currentRow[j] + 1, // Skip searchChar
-                    lastRow[j] + 1)); // Mismatch
-            }
+            currentRow.push(Math.min(
+                prevRow[j + 1] + 1, // Skip refChar
+                currentRow[j] + 1, // Skip searchChar
+                prevRow[j] + (refChar === searchChar ? 0 : 1))); // match or mismatch
         }
         const dist = currentRow[currentRow.length - 1];
-        console.log(currentRow);
+        prevRow = currentRow;
+        rows.push(prevRow);
         if (dist <= distance) {
-            //return i;
+            return _backtrack(reference, searchvalue, rows);
         }
-        lastRow = currentRow;
     }
     return -1;
 }
 
-console.log(indexOfWithDist("abcde", "cde", 1));
-
-/*
-console.assert(indexOfWithDist("abcdef", "bcd", 0) === 1, "Case 1 failed");
-console.assert(indexOfWithDist("abcdef", "bce", 0) === -1, "Case 2 failed");
-console.assert(indexOfWithDist("abcdef", "bCd", 0) === -1, "Case 3 failed");
-console.assert(indexOfWithDist("abcde", "cde", 1) === 2, "Case 4 failed");
-console.assert(indexOfWithDist("abcde", "cee", 1) === 2, "Case 5 failed");
-console.assert(indexOfWithDist("abcde", "eee", 1) === -1, "Case 6 failed");
-
-console.assert(indexOfWithDist("abcdef", "", 0) === 0, "Case 7 failed");
-console.assert(indexOfWithDist("abcdef", "", 2) === 0, "Case 8 failed");
-console.assert(indexOfWithDist("aabcdefghi", "acdef", 1) === 1, "Case 9 failed");
-
-console.assert(indexOfWithDist("abc", "xxxabcxxx", 6) === 0, "Case 10 failed");
-console.assert(indexOfWithDist("abc", "xxxabcxxx", 5) === -1, "Case 11 failed");
-*/
