@@ -1,12 +1,16 @@
 {
     "name": "distsearch",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": "Jeanno <jeanno.cheung@gmail.com>",
     "homepage": "https://github.com/Jeanno/distsearch",
     "license": "MIT",
     "main": "lib/distsearch.js",
     "type": "module",
-    "keywords": ["edit distance", "search", "text"],
+    "keywords": [
+        "edit distance",
+        "search",
+        "text"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/Jeanno/distsearch.git"
@@ -16,6 +20,8 @@
         "build": "babel src -d lib"
     },
     "babel": {
-        "presets": ["es2015"]
+        "presets": [
+            "es2015"
+        ]
     }
 }
