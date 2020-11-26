@@ -48,6 +48,11 @@ assertEqual(rangeOfWithDist("abcdef", "bCd", 0), null);
 assertEqual(cmpArray(rangeOfWithDist("abcdef", "bcd", 0), [1, 4]), true);
 assertEqual(cmpArray(rangeOfWithDist("aabcdefghi", "acdef", 1), [3, 7]), true);
 assertEqual(cmpArray(rangeOfWithDist("aacxdefghi", "acdef", 1), [1, 7]), true);
+assertEqual(cmpArray(rangeOfWithDist("aacxdefghi", "acdef", 1), [1, 7]), true);
+assertEqual(cmpArray(
+    rangeOfWithDist("a quick brown fox jumps over the lazy dog", "jump oer", 2),
+    [18, 28]
+), true);
 
 console.log("All tests are complete.");
 

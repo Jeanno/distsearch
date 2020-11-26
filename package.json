@@ -1,6 +1,7 @@
 {
     "name": "neofuzzy",
-    "version": "1.0.1",
+    "description" : "Quick fuzzy search string in text with arbitrary edit distance threshold.",
+    "version": "1.0.2",
     "author": "Jeanno <jeanno.cheung@gmail.com>",
     "license": "MIT",
     "main": "lib/neofuzzy.js",
