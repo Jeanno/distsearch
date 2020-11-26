@@ -1,6 +1,6 @@
 {
     "name": "neofuzzy",
-    "description" : "Quick fuzzy search string in text with arbitrary edit distance threshold.",
+    "description": "Quick fuzzy search string in text with arbitrary edit distance threshold.",
     "version": "1.0.2",
     "author": "Jeanno <jeanno.cheung@gmail.com>",
     "license": "MIT",
