@@ -7,6 +7,7 @@ function _pushIncreasing(ary, value, n) {
 function _backtrack(reference, searchvalue, distTable) {
     let rowIdx = distTable.length - 1;
     let colIdx = searchvalue.length;
+    let insertLength = 0;
     while (colIdx !== 0 && rowIdx !== 0) {
         const refChar = reference.charAt(rowIdx - 1);
         const searchChar = searchvalue.charAt(colIdx - 1);
@@ -15,8 +16,10 @@ function _backtrack(reference, searchvalue, distTable) {
         const val = currentRow[colIdx];
         if (currentRow[colIdx - 1] + 1 === val) {
             colIdx--;
+            insertLength--;
         } else if (prevRow[colIdx] + 1 === val) {
             rowIdx--;
+            insertLength++;
         } else if ((prevRow[colIdx - 1] + (refChar === searchChar ? 0 : 1)) === val)  {
             rowIdx--;
             colIdx--;
@@ -24,15 +27,16 @@ function _backtrack(reference, searchvalue, distTable) {
             throw "Backtracking error";
         }
     }
-    return rowIdx;
+    return [rowIdx, rowIdx + searchvalue.length + insertLength];
 }
 
-export function indexOfWithDist(reference, searchvalue, distance) {
+export function rangeOfWithDist(reference, searchvalue, distance) {
     if (distance === 0) {
-        return reference.indexOf(searchvalue);
+        const index = reference.indexOf(searchvalue);
+        return index === -1 ? null : [index, index + searchvalue.length]
     }
     if (searchvalue.length <= distance) {
-        return 0;
+        return [0, Math.min(searchvalue.length, reference.length)];
     }
     
     // Fill
@@ -57,6 +61,11 @@ export function indexOfWithDist(reference, searchvalue, distance) {
             return _backtrack(reference, searchvalue, rows);
         }
     }
-    return -1;
+    return null;
+}
+
+export function indexOfWithDist(reference, searchvalue, distance) {
+    const range = rangeOfWithDist(reference, searchvalue, distance);
+    return range ? range[0] : -1;
 }
 
